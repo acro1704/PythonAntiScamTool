@@ -20,5 +20,6 @@ while counter < 20000:
     password = randomStuff()
     #response = http.request('POST', 'https://'+url+'/auth.php?doAuth=1&login='+user+'&password='+password)
     response = http.request('POST', 'https://hyperxpulse.com/auth.php?doAuth=1&login='+user+'&password='+password)
-    print (" user: "+user[0:4]+"[...] / pass: "+password[0:4]+"[...] / size of request: "+str(round(2*sys.getsizeof(user)/1024/1024, 2))+"MB / http_status: "+str(response.status))
+    print ("size of request: "+str(round(2*sys.getsizeof(user)/1024/1024, 2))+"MB / http_status: "+str(response.status))
+   #" user: "+user[0:4]+"[...] / pass: "+password[0:4]+"[...] / 
     counter += 1
